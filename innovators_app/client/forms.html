@@ -1,0 +1,463 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Permit Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="container-fluid">
+                    
+                    <!-- Chatbot Popup -->
+                    <div id="chatbot-popup" style="position:fixed;bottom:24px;left:24px;z-index:9999;width:340px;max-width:90vw;background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.18);border:1px solid #e0e0e0;display:none;flex-direction:column;">
+                        <div style="background:#3498db;color:#fff;padding:12px 16px;border-top-left-radius:16px;border-top-right-radius:16px;font-weight:bold;display:flex;align-items:center;justify-content:space-between;">
+                            <span>Business Chatbot</span>
+                            <button id="close-chatbot" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;">&times;</button>
+                        </div>
+                        <div id="chatbot-messages" style="padding:16px;height:260px;overflow-y:auto;font-size:15px;"></div>
+                        <form id="chatbot-form" style="display:flex;padding:12px 16px;border-top:1px solid #e0e0e0;">
+                            <input id="chatbot-input" type="text" placeholder="Ask about business application..." style="flex:1;padding:8px 12px;border-radius:8px;border:1px solid #ccc;font-size:15px;outline:none;">
+                            <button type="submit" style="margin-left:8px;background:#3498db;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:15px;cursor:pointer;">Send</button>
+                        </form>
+                    </div>
+                    <button id="open-chatbot" style="position:fixed;bottom:24px;left:24px;z-index:9998;background:#3498db;color:#fff;border:none;border-radius:50%;width:56px;height:56px;box-shadow:0 2px 8px rgba(0,0,0,0.12);font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;">💬</button>
+        <div class="permit-container">
+            <h1 class="text-center mb-4" style="color: var(--primary); font-size: 2.5rem;">Required Permits</h1>
+            <p class="text-center mb-5" style="color: var(--dark); font-size: 1.2rem;">Complete your required business permits</p>
+            
+            <!-- DTI Registration Card -->
+            <div class="permit-card">
+                <div class="permit-header">
+                    <i class="permit-icon fas fa-file-signature"></i>
+                    <h2 style="margin: 0; font-size: 1.8rem;">DTI Registration</h2>
+                </div>
+
+                <div class="form-section">
+                    <div>
+                        <h5 class="section-title">Forms Required</h5>
+                        <div class="form-item">
+                            <input type="checkbox" id="dti-form" class="d-none">
+                            <label for="dti-form" class="checkbox-label">
+                                <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                                <span>DTI Business Name Registration</span>
+                            </label>
+                            <a href="https://bnrs.dti.gov.ph/resources/registration-guide?fbclid=IwY2xjawMBrPpleHRuA2FlbQIxMQABHh2M-W9yeT2h2hhHUIMjA7L_VtUYPyK22w18K4ZkrZk9JlLJXhMMW6pT7M81_aem_16JRscBUsknwry177Quirg" class="form-link">
+                                <i class="fas fa-external-link-alt"></i> Fill Form
+                            </a>
+                            <div class="disclaimer-text mt-2" style="font-size: 0.85rem; color: #6c757d; margin-left: 34px;">
+                                Submit your application on-site or use DTI's <a href="https://bnrs.dti.gov.ph/registration?fbclid=IwY2xjawMBrOlleHRuA2FlbQIxMQABHoS_6Mg5Kb1fFSATvUJiasKwmaXoA7sFQL4pN5hdTgY6_-WZ7F3p_V5T6oMl_aem_EykLn8mKDxLub57wGeyv1A" style="color: #3498db; text-decoration: underline;">online</a> portal for application.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+           <!-- Business Registration -->
+<div class="permit-card">
+    <div class="permit-header">
+        <i class="permit-icon fas fa-building"></i>
+        <h2 style="margin: 0; font-size: 1.8rem;">Business Registration</h2>
+    </div>
+    
+    <div class="form-section">
+        <div>
+            <h5 class="section-title">Forms Required</h5>
+            <div class="form-item">
+                <input type="checkbox" id="business-form" class="d-none">
+                <label for="business-form" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>Duly Accomplished Unified Business Application Form (4 copies)</span>
+                </label>
+                <a href="#" class="form-link">
+                    <i class="fas fa-external-link-alt" id="openModalBtn"></i> Fill Form
+                </a>
+                <form id="bsmeForm">
+        <div class="form-grid">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" id="lastName" class="form-control" placeholder="Last Name" value="" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="First Name" value="" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="middleName" class="form-label">Middle Name</label>
+                            <input type="text" id="middleName" class="form-control" placeholder="Middle Name" value="">
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" id="fullName" class="form-control" placeholder="Full Name" value="">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="nationality" class="form-label">Nationality</label>
+                            <input type="text" id="nationality" class="form-control" placeholder="Nationality" value="">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="sex" class="form-label">Sex</label>
+                            <select id="sex" class="form-select" required>
+                                <option value="" selected>Sex</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                            <input type="date" id="dateOfBirth" class="form-control" value="" required>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="address" class="form-label">Home Address</label>
+                            <input type="text" id="address" class="form-control" placeholder="Home Address" value="">
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label for="businessName" class="form-label">Business Name</label>
+                            <input type="text" id="businessName" class="form-control" placeholder="Business Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="businessAddress" class="form-label">Business Address</label>
+                            <input type="text" id="businessAddress" class="form-control" placeholder="Business Address">
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <label for="businessBarangay" class="form-label">Business Barangay</label>
+                            <input type="text" id="businessBarangay" class="form-control" placeholder="Business Barangay">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="businessZipCode" class="form-label">Business Zip Code</label>
+                            <input type="text" id="businessZipCode" class="form-control" placeholder="Business Zip Code">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="officeContactNumber" class="form-label">Office Contact No.</label>
+                            <input type="text" id="officeContactNumber" class="form-control" placeholder="Office Contact No.">
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label for="officeEmail" class="form-label">Office Email</label>
+                            <input type="email" id="officeEmail" class="form-control" placeholder="Office Email">
+                        </div>
+                    </div>
+        </div>
+
+        <button type="button" class = "btn-primary" onclick="autofillCertificateForm()">Autofill & Lock</button>
+      </form>
+            </div>
+            <!-- Modal Form -->
+            <!-- MODAL STRUCTURE -->
+  <div class="modal js-modal-permit">
+     
+  </div>
+  <pre id="outputBox" style="background:#f8f9fa; padding: 1rem; margin-top: 1rem; border: 1px solid #ccc; border-radius: 6px; max-height: 300px; overflow: auto;"></pre>
+
+            
+            <div class="form-item">
+                <input type="checkbox" id="tax-form" class="d-none">
+                <label for="tax-form" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>Certificate of Conformance (Valid Lease/Sub-Lease Contract/Certificate of Non-rental)</span>
+                </label>
+                <a href="#" class="form-link">
+                    <i class="fas fa-external-link-alt"></i> Fill Form
+                </a>
+            </div>
+
+            <!-- Additional Form 1 -->
+            <div class="form-item">
+                <input type="checkbox" id="form3" class="d-none">
+                <label for="form3" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>Barangay Clearance Application Form</span>
+                </label>
+                <a href="#" class="form-link">
+                    <i class="fas fa-external-link-alt"></i> Fill Form
+                </a>
+            </div>
+
+            <!-- Additional Form 2 -->
+            <div class="form-item">
+                <input type="checkbox" id="form4" class="d-none">
+                <label for="form4" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>Mayor's Permit Application Form</span>
+                </label>
+                <a href="#" class="form-link">
+                    <i class="fas fa-external-link-alt"></i> Fill Form
+                </a>
+            </div>
+        </div>
+        
+        <div>
+            <h5 class="section-title">Documents Required</h5>
+            <div class="form-item">
+                <input type="checkbox" id="address-proof" class="d-none">
+                <label for="address-proof" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>Proof of Address</span>
+                </label>
+                <div class="upload-area" onclick="document.getElementById('addressProofUpload').click()">
+                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="upload-text">Click to upload or drag & drop</div>
+                    <div class="upload-hint">PDF, JPG, PNG (Max 5MB)</div>
+                </div>
+                <input type="file" id="addressProofUpload" class="d-none" accept=".pdf,.jpg,.jpeg,.png">
+                <div id="addressProofPreview"></div>
+            </div>
+
+            <!-- Additional Document 1 -->
+            <div class="form-item">
+                <input type="checkbox" id="doc1" class="d-none">
+                <label for="doc1" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>Valid Government-Issued ID</span>
+                </label>
+                <div class="upload-area" onclick="document.getElementById('doc1Upload').click()">
+                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="upload-text">Click to upload or drag & drop</div>
+                    <div class="upload-hint">PDF, JPG, PNG (Max 5MB)</div>
+                </div>
+                <input type="file" id="doc1Upload" class="d-none" accept=".pdf,.jpg,.jpeg,.png">
+                <div id="doc1Preview"></div>
+            </div>
+
+            <!-- Additional Document 2 -->
+            <div class="form-item">
+                <input type="checkbox" id="doc2" class="d-none">
+                <label for="doc2" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>DTI Business Name Registration Certificate</span>
+                </label>
+                <div class="upload-area" onclick="document.getElementById('doc2Upload').click()">
+                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="upload-text">Click to upload or drag & drop</div>
+                    <div class="upload-hint">PDF, JPG, PNG (Max 5MB)</div>
+                </div>
+                <input type="file" id="doc2Upload" class="d-none" accept=".pdf,.jpg,.jpeg,.png">
+                <div id="doc2Preview"></div>
+            </div>
+
+            <!-- Additional Document 3 -->
+            <div class="form-item">
+                <input type="checkbox" id="doc3" class="d-none">
+                <label for="doc3" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>Tax Identification Number (TIN)</span>
+                </label>
+                <div class="upload-area" onclick="document.getElementById('doc3Upload').click()">
+                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="upload-text">Click to upload or drag & drop</div>
+                    <div class="upload-hint">PDF, JPG, PNG (Max 5MB)</div>
+                </div>
+                <input type="file" id="doc3Upload" class="d-none" accept=".pdf,.jpg,.jpeg,.png">
+                <div id="doc3Preview"></div>
+            </div>
+
+            <!-- Additional Document 4 -->
+            <div class="form-item">
+                <input type="checkbox" id="doc4" class="d-none">
+                <label for="doc4" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>Community Tax Certificate (Cedula)</span>
+                </label>
+                <div class="upload-area" onclick="document.getElementById('doc4Upload').click()">
+                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="upload-text">Click to upload or drag & drop</div>
+                    <div class="upload-hint">PDF, JPG, PNG (Max 5MB)</div>
+                </div>
+                <input type="file" id="doc4Upload" class="d-none" accept=".pdf,.jpg,.jpeg,.png">
+                <div id="doc4Preview"></div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+            <!-- BIR Registration Card -->
+<div class="permit-card">
+    <div class="permit-header">
+        <i class="permit-icon fas fa-file-invoice-dollar"></i>
+        <h2 style="margin: 0; font-size: 1.8rem;">BIR Registration</h2>
+    </div>
+    
+    <div class="form-section">
+        <div>
+            <h5 class="section-title">Forms Required</h5>
+            
+            <!-- Form 1: BIR Form 1901 -->
+            <div class="form-item">
+                <input type="checkbox" id="bir-form" class="d-none">
+                <label for="bir-form" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>BIR Form 1901 (Application for Registration)</span>
+                </label>
+                <a href="https://bir-cdn.bir.gov.ph/BIR/pdf/1901%20January%202024%20ENCS_final.pdf" class="form-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Fill Form
+                </a>
+            </div>
+            
+            <!-- Form 2: BIR Form 1906 -->
+            <div class="form-item">
+                <input type="checkbox" id="bir-form2" class="d-none">
+                <label for="bir-form2" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>BIR Form 1906 (Authority to Print Receipts)</span>
+                </label>
+                <a href="https://bir-cdn.bir.gov.ph/BIR/pdf/1906%20January%202024%20ENCS_final.pdf" class="form-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Fill Form
+                </a>
+            </div>
+            
+            <!-- Form 3: BIR Form 1907 -->
+            <div class="form-item">
+                <input type="checkbox" id="bir-form3" class="d-none">
+                <label for="bir-form3" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>BIR Form 1907 (Permit for POS/Cash Register)</span>
+                </label>
+                <a href="https://lawphil.net/administ/bir/frms/app/1907.pdf" class="form-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Fill Form
+                </a>
+            </div>
+            
+            <!-- Form 4: BIR Form 0605 -->
+            <div class="form-item">
+                <input type="checkbox" id="bir-form4" class="d-none">
+                <label for="bir-form4" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>BIR Form 0605 (Annual Registration Tax Payment)</span>
+                </label>
+                <a href="https://bir-cdn.bir.gov.ph/local/pdf/0605version1999_09.02.2022_copy.pdf" class="form-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Fill Form
+                </a>
+            </div>
+            
+            <!-- Form 5: BIR Form 2551Q -->
+            <div class="form-item">
+                <input type="checkbox" id="bir-form5" class="d-none">
+                <label for="bir-form5" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>BIR Form 2551Q (Quarterly Percentage Tax)</span>
+                </label>
+                <a href="https://bir-cdn.bir.gov.ph/local/pdf/2551Q%20Jan%202018%20ENCS%20final%20rev%203_copy.pdf" class="form-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Fill Form
+                </a>
+            </div>
+            
+            <!-- Form 6: BIR Form 1701 -->
+            <div class="form-item">
+                <input type="checkbox" id="bir-form6" class="d-none">
+                <label for="bir-form6" class="checkbox-label">
+                    <span class="custom-checkbox"><i class="fas fa-check" style="font-size: 12px;"></i></span>
+                    <span>BIR Form 1701 (Annual Income Tax Return)</span>
+                </label>
+                <a href="https://www.pwc.com/ph/en/tax-alerts/assets/bir_form_1701.pdf" class="form-link" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Fill Form
+                </a>
+                <div class="disclaimer-text mt-2" style="font-size: 0.85rem; color: #6c757d; margin-left: 34px;">
+                    For self-employed individuals and professionals
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+            <div class="submit-section">
+                <button class="btn-submit">
+                    <a href="index.html" ><i class="fas fa-paper-plane mr-2"></i> Submit All Applications</a>
+                </button>
+
+            </div>
+            </div>
+        </div>
+
+    <script src="form.js"></script>
+<script>
+// --- AI Chatbot Logic ---
+const apiKey = 'ZTcxZDdhMDAtYzVkZC00OWQyLWE0OTItNjViYjRmOWJlZTMy';
+let chatSessionId = null;
+
+// Show/hide chatbot popup
+document.getElementById('open-chatbot').addEventListener('click', () => {
+    document.getElementById('chatbot-popup').style.display = 'flex';
+});
+document.getElementById('close-chatbot').addEventListener('click', () => {
+    document.getElementById('chatbot-popup').style.display = 'none';
+});
+
+// Create chat session on first open
+async function createChatSession() {
+    if (chatSessionId) return chatSessionId;
+    try {
+        const res = await fetch('https://ai-tools.rev21labs.com/api/v1/ai/session', {
+            method: 'GET',
+            headers: {
+                'x-api-key': apiKey
+            }
+        });
+        const data = await res.json();
+        chatSessionId = data.session_id || data.sessionId || data.id;
+        return chatSessionId;
+    } catch (err) {
+        console.error('Failed to create chat session:', err);
+        return null;
+    }
+}
+
+// Send message to chatbot
+async function sendChatMessage(message) {
+    const sessionId = await createChatSession();
+    if (!sessionId) return 'Sorry, chatbot is unavailable.';
+    try {
+        const res = await fetch('https://ai-tools.rev21labs.com/api/v1/ai/chat', {
+            method: 'POST',
+            headers: {
+                'session-id': sessionId,
+                'Content-Type': 'application/json',
+                'x-api-key': apiKey
+            },
+            body: JSON.stringify({ content: message })
+        });
+        const data = await res.json();
+        return data.response || data.content || 'No response.';
+    } catch (err) {
+        console.error('Chatbot error:', err);
+        return 'Error contacting chatbot.';
+    }
+}
+
+// Handle form submit
+document.getElementById('chatbot-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const input = document.getElementById('chatbot-input');
+    const messages = document.getElementById('chatbot-messages');
+    const userMsg = input.value.trim();
+    if (!userMsg) return;
+    // Show user message
+    const userDiv = document.createElement('div');
+    userDiv.style.marginBottom = '8px';
+    userDiv.innerHTML = `<strong>You:</strong> ${userMsg}`;
+    messages.appendChild(userDiv);
+    messages.scrollTop = messages.scrollHeight;
+    input.value = '';
+    // Show loading
+    const botDiv = document.createElement('div');
+    botDiv.innerHTML = '<em>Bot is typing...</em>';
+    messages.appendChild(botDiv);
+    messages.scrollTop = messages.scrollHeight;
+    // Get bot response
+    const botReply = await sendChatMessage(userMsg);
+    botDiv.innerHTML = `<strong>Bot:</strong> ${botReply}`;
+    messages.scrollTop = messages.scrollHeight;
+});
+</script>
+</body>
+</html>

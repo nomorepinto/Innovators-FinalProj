@@ -1,0 +1,228 @@
+:root {
+            --primary: #000000;
+            --secondary: #030f17;
+            --light: #ecf0f1;
+            --dark: #6c757d;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .permit-container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .permit-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-top: 4px solid var(--secondary);
+            width: 100%;
+        }
+        
+        .permit-header {
+            color: var(--primary);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .permit-icon {
+            font-size: 28px;
+            color: var(--secondary);
+        }
+        
+        .form-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .form-item {
+            margin-bottom: 20px;
+            padding-left: 10px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 1.05rem;
+        }
+        
+        .custom-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        input[type="checkbox"]:checked + .checkbox-label .custom-checkbox {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: white;
+        }
+        
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            background-color: #fafafa;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--secondary);
+            background-color: #f0f7ff;
+        }
+        
+        .upload-icon {
+            font-size: 40px;
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+        
+        .upload-text {
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .upload-hint {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .form-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 35px;
+            font-size: 1.05rem;
+        }
+        
+        .form-link:hover {
+            text-decoration: underline;
+        }
+        
+        .file-preview {
+            margin-top: 12px;
+            padding: 12px;
+            background-color: #e8f4fd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .file-preview i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .submit-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .btn-submit {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .form-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .permit-container {
+                width: 98%;
+                padding: 10px 0;
+            }
+            
+            .permit-card {
+                padding: 20px;
+            }
+        }
+
+        .modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.visible {
+    display: block;
+}
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 700px;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.close {
+  position: absolute;
+  top: 10px; right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
